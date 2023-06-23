@@ -2,24 +2,17 @@ local CurrentOpacity = 150
 local CurrentTextOpacity = 255
 local IsTextVisible = false
 
-
-
-local color = {
-    r = math.random(0, 255),
-    g = math.random(0, 255),
-    b = math.random(0, 255)
-}
-
 function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
     SetTextFont(font)
     SetTextScale(sc, sc)
     SetTextJustification(jus)
     SetTextColour(r, g, b, a)
-    SetTextDropShadow()
+    SetTextDropShadow(0, 0, 0, 0, 255)
     SetTextEdge(1, 0, 0, 0, 255)
+    SetTextDropShadow()
     SetTextOutline()
     SetTextEntry("STRING")
-    AddTextComponentString(text) -- 99 char max
+    AddTextComponentString(text)
     DrawText(x, y - 0.015)
 end
 
@@ -41,24 +34,17 @@ AddEventHandler('v-dialogtext', function(text)
     end
 end)
 
-RegisterNetEvent('v-hidetext')
-AddEventHandler('v-hidetext', function()
-    IsTextVisible = false
-end)
-
 function dialogtext(text, time)
     if IsTextVisible then
-        TriggerEvent('v-hidetext') -- Stop displaying current text
+        IsTextVisible = false -- Stop displaying current text
         Wait(100) -- Wait for a brief moment before showing the new text
-        IsTextVisible = true
-        TriggerEvent('v-dialogtext', text) -- Trigger the event again with the new text
-    else
-        TriggerEvent('v-dialogtext', text) -- Trigger the event with the new text
     end
+    IsTextVisible = true
+    TriggerEvent('v-dialogtext', text) -- Trigger the event with the new text
 end
 
 function hidetext()
-    TriggerEvent('v-hidetext')
+    IsTextVisible = false
 end
 
 -- Example usage
