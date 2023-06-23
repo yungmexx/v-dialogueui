@@ -16,3 +16,4 @@ Credits go to Pata_PataMods on CFX for the ui. All I did was extract the Ui part
 https://forum.cfx.re/t/patachute-a-simple-skydiving-script-standalone/4814245
 
 
+https://forum.cfx.re/uploads/default/original/4X/2/4/d/24d9f5c188777ae5788741f3f5bea76377c4948b.jpeg
