@@ -1,4 +1,3 @@
-local CurrentOpacity = 150
 local CurrentTextOpacity = 255
 local IsTextVisible = false
 
