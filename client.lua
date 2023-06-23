@@ -13,7 +13,7 @@ function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
     SetTextOutline()
     SetTextEntry("STRING")
     AddTextComponentString(text)
-    DrawText(x, y - 0.015)
+    DrawText(x, y - 0.005)
 end
 
 RegisterNetEvent('v-dialogtext')
