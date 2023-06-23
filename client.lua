@@ -1,7 +1,7 @@
 local CurrentTextOpacity = 255
 local IsTextVisible = false
 
-function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
+local function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
     SetTextFont(font)
     SetTextScale(sc, sc)
     SetTextJustification(jus)
@@ -15,8 +15,7 @@ function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
     DrawText(x, y - 0.005)
 end
 
-RegisterNetEvent('v-dialogtext')
-AddEventHandler('v-dialogtext', function(text)
+RegisterNetEvent('v-dialogtext', function(text)
     IsTextVisible = true
     while IsTextVisible do
         Wait(0)
@@ -45,6 +44,18 @@ end
 function hidetext()
     IsTextVisible = false
 end
+
+exports("dialogtext",function(text) 
+    if not type(text) == "string"  then
+        print(("Value passed is not a string type: %s"):format(type(text)))
+        return 
+    end
+    dialogtext(text,1)
+end)
+
+exports('hidetext', function()
+    hidetext()
+end)
 
 -- Example usage
 RegisterCommand('dialogtext', function(source, args, rawCommand, time)
