@@ -86,14 +86,26 @@ end)
 
 RegisterNetEvent('v-dialogue:hidetext', HideText)
 
--- Example usage
---[[
 
 RegisterCommand('hidetext', HideText)
 
+
+
+-- Example usage
+
+--[[
 RegisterCommand('triggerdialogue', function()
+    test = true
+    while test do
+        Wait(0)
     TriggerEvent('v-dialogue:showtext', "This is an Example")
-    Wait(5000)
+    end
+
+    TriggerEvent('v-dialogue:hidetext')
+end)
+
+RegisterCommand('hidedialogue', function()
+    test = false
     TriggerEvent('v-dialogue:hidetext')
 end)
 --]]
