@@ -1,5 +1,11 @@
 
+--======================================================================================================================================================
+--=======================================================To USE AS An Export============================================================================
+--======================================================================================================================================================
+
 local CurrentTextOpacity = 255
+local IsTextVisible = false
+
 
 local function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
     SetTextFont(font)
@@ -57,7 +63,37 @@ end
 exports('showTextUI', ShowText)
 
 --[[
-RegisterCommand('showtextexampple', function()
-    exports['v-ui']:showTextUI('This is an example text', 5000) -- Display the text for 5 seconds (5000 milliseconds)
+RegisterCommand('exportdialogue', function()
+    exports['v-dialogue']:showTextUI('This is an example text', 5000) -- Display the text for 5 seconds (5000 milliseconds)
+end)
+--]]
+
+--======================================================================================================================================================
+--=======================================================To USE AS A TRIGGER EVENT======================================================================
+--======================================================================================================================================================
+
+RegisterNetEvent('v-dialogue:showtext', function(text)
+    IsTextVisible = true
+    local splittext1 = string.sub(text, 0, 98)
+    local splittext2 = string.sub(text, 99)
+
+    -- Draw UI elements
+    DrawUIElements()
+
+    DrawAdvancedText(0.5, 0.91, 0.4, tostring(splittext1), 255, 255, 255, CurrentTextOpacity, 6, 0)
+    DrawAdvancedText(0.5, 0.93, 0.4, tostring(splittext2), 255, 255, 255, CurrentTextOpacity, 6, 0)
+end)
+
+RegisterNetEvent('v-dialogue:hidetext', HideText)
+
+-- Example usage
+--[[
+
+RegisterCommand('hidetext', HideText)
+
+RegisterCommand('triggerdialogue', function()
+    TriggerEvent('v-dialogue:showtext', "This is an Example")
+    Wait(5000)
+    TriggerEvent('v-dialogue:hidetext')
 end)
 --]]
