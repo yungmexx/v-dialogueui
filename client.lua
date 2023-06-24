@@ -15,16 +15,16 @@ function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
     DrawText(x, y - 0.005)
 end
 
-function DrawUIElements()
+local function DrawUIElements()
     DrawRect(0.5, 0.92, 0.40, 0.07, 0, 0, 0, 150)
     DrawRect(0.5, 0.965, 0.40, 0.0025, 180, 180, 180, 150)
 end
 
-function HideText()
+local function HideText()
     IsTextVisible = false
 end
 
-function ShowText(text)
+local function ShowText(text)
     if IsTextVisible then
         Wait(100) -- Wait for a brief moment before showing the new text
     end
