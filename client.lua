@@ -1,7 +1,7 @@
 local CurrentTextOpacity = 255
 local IsTextVisible = false
 
-function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
+local function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
     SetTextFont(font)
     SetTextScale(sc, sc)
     SetTextJustification(jus)
