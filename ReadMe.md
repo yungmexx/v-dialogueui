@@ -1,31 +1,27 @@
 How to use:
 
-
 You can either go two routes, first is trigger the event that you can use in loop
-
 
 TriggerEvent('v-dialogue:showtext', CHANGEME )
 
-Set CHANGEME to whatever you want make sure its in " " 
+Set CHANGEME to whatever you want make sure its in " "
 
-EXAMPLE: TriggerEvent('v-dialogue:showtext', "This is an Example" )
+EXAMPLE: TriggerEvent('v-dialogue:showtext', "This is an Example")
 
 How to hide Ui:
 
-TriggerEvent('v-hidetext')
+EXAMPLE: TriggerEvent('v-dialogue:hidetext')
 
-
-  Or you can export it to go based on a timer
-
+Or you can export it to go based on a timer
 
 How to use:
 
 exports['v-dialogueui']:showTextUI( CHANGEME, time)
 
-Set CHANGEME to whatever you want make sure its in " " 
-and change time to a number for example: 5000
+Set CHANGEME to whatever you want make sure its in " " and change time to a number for example: 5000
 
 EXAMPLE: exports['v-dialogueui']:showTextUI('This is an example text', 5000) -- Display the text for 5 seconds (5000 milliseconds)
+
 
 
 Credits go to Pata_PataMods on CFX for the ui. All I did was extract the Ui part to use as TriggerEvents
