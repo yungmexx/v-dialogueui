@@ -14,6 +14,8 @@ EXAMPLE: TriggerEvent('v-dialogue:hidetext')
 
 Or you can export it to go based on a timer
 
+DO NOT RUN IN LOOP
+
 How to use:
 
 exports['v-dialogueui']:showTextUI( CHANGEME, time)
