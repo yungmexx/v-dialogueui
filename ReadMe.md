@@ -1,8 +1,8 @@
 How to use:
 
---==============================================================================
-  You can either go two routes, first is trigger the event that you can use in loop
---==============================================================================
+
+You can either go two routes, first is trigger the event that you can use in loop
+
 
 TriggerEvent('v-dialogue:showtext', CHANGEME )
 
@@ -14,9 +14,9 @@ How to hide Ui:
 
 TriggerEvent('v-hidetext')
 
---==========================================
+
   Or you can export it to go based on a timer
---==========================================
+
 
 How to use:
 
