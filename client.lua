@@ -1,5 +1,5 @@
+
 local CurrentTextOpacity = 255
-local IsTextVisible = false
 
 local function DrawAdvancedText(x, y, sc, text, r, g, b, a, font, jus)
     SetTextFont(font)
@@ -24,40 +24,40 @@ local function HideText()
     IsTextVisible = false
 end
 
-local function ShowText(text)
-    if IsTextVisible then
-        Wait(100) -- Wait for a brief moment before showing the new text
-    end
-    IsTextVisible = true
-    TriggerEvent('v-dialogue:showtext', text) -- Trigger the event with the new text
-end
-
-RegisterNetEvent('v-dialogue:showtext', function(text)
+local function ShowText(text, duration)
     IsTextVisible = true
     local splittext1 = string.sub(text, 0, 98)
     local splittext2 = string.sub(text, 99)
 
-    -- Draw UI elements
-    DrawUIElements()
+    Citizen.CreateThread(function()
+        local startTime = GetGameTimer()
+        while IsTextVisible do
+            Citizen.Wait(0)
 
-    DrawAdvancedText(0.5, 0.91, 0.4, tostring(splittext1), 255, 255, 255, CurrentTextOpacity, 6, 0)
-    DrawAdvancedText(0.5, 0.93, 0.4, tostring(splittext2), 255, 255, 255, CurrentTextOpacity, 6, 0)
-end)
+            -- Calculate the elapsed time
+            local elapsedTime = GetGameTimer() - startTime
 
-RegisterNetEvent('v-hidetext', HideText)
+            -- Draw UI elements
+            DrawUIElements()
 
--- Example usage
+            -- Draw text with current opacity
+            DrawAdvancedText(0.5, 0.91, 0.4, tostring(splittext1), 255, 255, 255, CurrentTextOpacity, 6, 0)
+            DrawAdvancedText(0.5, 0.93, 0.4, tostring(splittext2), 255, 255, 255, CurrentTextOpacity, 6, 0)
+
+            -- Check if the specified duration has passed
+            if GetGameTimer() - startTime >= duration then
+                IsTextVisible = false
+            end
+        end
+    end)
+end
+
+
+-- Exported functions
+exports('showTextUI', ShowText)
+
 --[[
-RegisterCommand('dialogtext', function(source, args, rawCommand)
-    local text = table.concat(args, " ")
-    ShowText(text)
-end)
-
-RegisterCommand('hidetext', HideText)
-
-RegisterCommand('testest', function()
-    TriggerEvent('v-dialogue:showtext', "This is an Example")
-    Wait(1000)
-    TriggerEvent('v-hidetext')
+RegisterCommand('showtextexampple', function()
+    exports['v-ui']:showTextUI('This is an example text', 5000) -- Display the text for 5 seconds (5000 milliseconds)
 end)
 --]]
